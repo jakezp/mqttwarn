@@ -17,7 +17,7 @@ RUN apt-get update && apt-get upgrade -yq && apt-get install supervisor tzdata p
 RUN pip install paho-mqtt requests jinja2
 
 # build /opt/mqttwarn
-RUN mkdir -p /opt/mqttwarn && groupadd -r mqttwarn && useradd -r -g mqttwarn mqttwarn
+RUN chmod +x /run.sh && mkdir -p /opt/mqttwarn && groupadd -r mqttwarn && useradd -r -g mqttwarn mqttwarn
 COPY . /opt/mqttwarn
 RUN chown -R mqttwarn /opt/mqttwarn
 VOLUME ["/opt/mqttwarn/conf"]
